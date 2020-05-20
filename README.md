@@ -1,6 +1,5 @@
 # kafka-example
 
-- To run this project, clone the repo first.
 - To start kafka service from kafka folder in powershell by using the command ``` .\bin\windows\kafka-server-start.bat .\config\server.properties ```
 - To start the zookeeper from the kafka folder using the command  ```.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties ```
 - To create a topic in new powershel using the command ```.\bin\windows\kafka-topics.bat --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --create --topic test```
