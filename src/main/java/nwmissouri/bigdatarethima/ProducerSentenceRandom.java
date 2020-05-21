@@ -8,9 +8,6 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- * Created by sunilpatil on 12/28/15. Modified by Denise Case on 10/29/2019.
- */
 public class ProducerSentenceRandom {
   private static Scanner in;
 
@@ -36,15 +33,13 @@ public class ProducerSentenceRandom {
 
     org.apache.kafka.clients.producer.Producer producer = new KafkaProducer(configProperties);
 
-    // Make our own messages - create your custom logic here
 
     for (int i = 1; i <= 5; i++) {
-      String message = createSentence();
-      ProducerRecord<String, String> rec = new ProducerRecord<String, String>(topicName, message);
+      String pizza = createPizzaMenu();
+      ProducerRecord<String, String> rec = new ProducerRecord<String, String>(topicName, pizza);
       producer.send(rec);
     }
 
-    // still allow input from keyboard
 
     String line = in.nextLine();
     while (!line.equals("exit")) {
@@ -58,16 +53,14 @@ public class ProducerSentenceRandom {
 
   }
 
-  private static String createSentence() {
+  private static String createPizzaMenu() {
     String[] names = { "chicken pizza", "paneer pizza", "beaf pizza", "bacon pizza", "BBQ pizza" };
 
     Random r = new Random();
 
-    int count = 3;
-    int minIndex = 0;
-    int maxIndex = 4;
+    int count = 3, min=0, max=4;
 
-    int[] randoms = r.ints(count, minIndex, maxIndex).toArray();
+    int[] randoms = r.ints(count, min, max).toArray();
 
     return "Pizza item name " + names[randoms[1]] +".";
   }
